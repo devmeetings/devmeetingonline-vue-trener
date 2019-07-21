@@ -32,6 +32,10 @@
     <!--1/ 6. v-on adds an handler and :click is the name of the event, then goes the function to invoke -->
     <button v-on:click="removeLast()">Remove last item</button>
     <button v-on:click="addItem('Tea')">Add hardcoded</button>
+    <form v-on:submit.prevent="onSubmit()">
+      <input v-model="newItemName" type="text">
+      <button type="submit">Add item</button>
+    </form>
   </div>
 
 
@@ -56,6 +60,10 @@
             id: this.counter++,
             name
           });
+        },
+        onSubmit() {
+          this.addItem(this.newItemName);
+          this.newItemName = '';
         }
       }
     })
